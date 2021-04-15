@@ -8,10 +8,14 @@ import {connect} from 'react-redux'
 class DuckLoader extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {colorPicker: '#fafafa'}
+    console.log(props)
+    this.state = {colorPicker: '#fafafa',
+    name: ''
+  }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.main = this.main.bind(this)
+    this.saveDuck = this.saveDuck.bind(this)
   }
 
   componentDidMount() {
@@ -96,10 +100,13 @@ class DuckLoader extends React.Component {
 
   handleChange(evt) {
     this.setState({[evt.target.name]: evt.target.value})
+    console.log(evt.target.value)
   }
 
   handleSubmit(evt) {
+
     evt.preventDefault()
+    console.log('hi there')
     const color = this.state.colorPicker
     let scene = this.scene
     this.objLoader.load('./duck.obj', function(object) {
@@ -118,9 +125,10 @@ class DuckLoader extends React.Component {
   }
   saveDuck(evt) {
     evt.preventDefault()
+    console.log(this.props)
     this.props.addDuck(
-      this.props.colorPicker,
-      this.props.name,
+      this.state.colorPicker,
+      this.state.name,
       this.props.userId
     )
   }
@@ -131,12 +139,12 @@ class DuckLoader extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="colorPicker">Pick your color!</label>
           <input type="color" name="colorPicker" onChange={this.handleChange} />
-          <button onSubmit={this.handleSubmit}>Try</button>
+          <button>Try</button>
         </form>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.saveDuck}>
           <label htmlFor="name">Save my Duck</label>
           <input type="text" name="name" onChange={this.handleChange} />
-          <button onSubmit={this.saveDuck}>Save</button>
+          <button>Save</button>
         </form>
       </div>
     )

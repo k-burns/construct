@@ -51,12 +51,13 @@ export const deleteDuck = duckId => async dispatch => {
 
 export const createDuck = (duckColor, duckName, userId) => async dispatch => {
   try {
-    const {data} = await axios.post('/api/ducks', {
-      duckName,
-      duckColor,
+    console.log('hello')
+    const data = await axios.post('/api/ducks', {
+      name: duckName,
+      color: duckColor,
       userId
     })
-    dispatch(addDuck(duckColor, duckName, userId))
+    // dispatch(addDuck(duckColor, duckName, userId))
   } catch (err) {
     console.error('Error adding duck', err)
   }
