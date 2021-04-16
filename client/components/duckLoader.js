@@ -8,7 +8,6 @@ import {connect} from 'react-redux'
 class DuckLoader extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {colorPicker: '#fafafa',
     name: ''
   }
@@ -100,11 +99,9 @@ class DuckLoader extends React.Component {
 
   handleChange(evt) {
     this.setState({[evt.target.name]: evt.target.value})
-    console.log(evt.target.value)
   }
 
   handleSubmit(evt) {
-
     evt.preventDefault()
     console.log('hi there')
     const color = this.state.colorPicker
@@ -125,12 +122,20 @@ class DuckLoader extends React.Component {
   }
   saveDuck(evt) {
     evt.preventDefault()
-    console.log(this.props)
-    this.props.addDuck(
-      this.state.colorPicker,
-      this.state.name,
-      this.props.userId
-    )
+    console.log(this.state)
+    if(this.props.id ===undefined){
+      window.alert('Please login to save duck')
+    }else if(this.state.name === undefined){
+      window.alert('Please name your friend')
+    }else{
+      console.log(this.props)
+      this.props.addDuck(
+        this.state.colorPicker,
+        this.state.name,
+        this.props.id
+      )
+    }
+
   }
   render() {
     return (
@@ -152,8 +157,7 @@ class DuckLoader extends React.Component {
 }
 
 const mapState = state => ({
-  name: state.name,
-  color: state.colorPicker
+  id: state.user.id
 })
 const mapDispatch = dispatch => ({
   addDuck: (duckColor, duckName, userId) =>
