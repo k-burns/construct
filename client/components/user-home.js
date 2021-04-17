@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchDucks} from '../store/ducks'
-import Nest from './nest'
+import {addDuck, fetchDucks} from '../store/ducks'
+import {Link} from 'react-router-dom'
+
 /**
  * COMPONENT
  */
@@ -21,9 +22,8 @@ class UserHome extends React.Component {
     return (
       <div>
         <h3>Welcome to your nest, {this.email}</h3>
-        <h5>Pick a duck to play with</h5>
-        <div>{ducks.map(duck => {return
-          (<div>{duck.name}</div>)})}</div>
+        <h5>{ducks.length ? 'Pick a duck to play with' : 'Uh oh! Your nest is empty! Why not go make a freind?'}</h5>
+        <div> {ducks.map(duck => <Link to={{pathname:"/savedDuck", state:{id: duck.id, color: duck.color, name: duck.name}}}>{duck.name}</Link>)}</div>
       </div>
     )
   }

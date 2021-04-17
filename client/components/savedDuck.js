@@ -1,25 +1,23 @@
 import React from 'react'
 import * as THREE from 'three'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader'
-import {createDuck} from '../store/ducks'
+import {editDuck, deleteDuck} from '../store/ducks'
 import {connect} from 'react-redux'
 import loader from './3dLoaderFunc'
 
-class DuckLoader extends React.Component {
+class SavedDuck extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {colorPicker: '#fafafa',
-    name: ''
+    this.state = {colorPicker: this.props.location.state.color,
+    name: this.props.location.state.name
   }
     this.scene = new THREE.Scene()
     this.objLoader = new OBJLoader()
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.saveDuck = this.saveDuck.bind(this)
-  }
+    this.updateDuck = this.updateDuck.bind(this)
+    this.deleteDuck = this.deleteDuck.bind(this)
 
-  componentDidMount() {
-    loader(this.state.colorPicker, this.scene, this.objLoader)
   }
 
   handleChange(evt) {
@@ -44,22 +42,32 @@ class DuckLoader extends React.Component {
       scene.add(object)
     })
   }
-  saveDuck(evt) {
+
+  componentDidMount() {
+    loader(this.state.colorPicker, this.scene, this.objLoader)
+  }
+
+  updateDuck(evt) {
     evt.preventDefault()
-    if(this.props.id ===undefined){
-      window.alert('Please login to save duck')
-    }else if(this.state.name === undefined){
+
+    if(this.state.name === undefined){
       window.alert('Please name your friend')
     }else{
-      this.props.addDuck(
+      this.props.editDuck(
         this.state.colorPicker,
         this.state.name,
-        this.props.id
+        this.props.location.state.id
       )
     }
   }
+
+  deleteDuck(evt){
+    evt.preventDefault()
+    console.log('deleting')
+    this.props.removeDuck(this.props.location.state.id)
+  }
+
   render() {
-    console.log(this.scene)
     return (
       <div>
         <canvas id = 'c'></canvas>
@@ -69,23 +77,25 @@ class DuckLoader extends React.Component {
           <input type="color" name="colorPicker" onChange={this.handleChange} />
           <button>Try</button>
         </form>
-        <form onSubmit={this.saveDuck}>
-          <label htmlFor="name">Save my Duck</label>
+        <form onSubmit={this.updateDuck}>
+          <label htmlFor="name">Update my Duck</label>
           <input type="text" name="name" onChange={this.handleChange} />
           <button>Save</button>
         </form>
+        <button onClick = {this.deleteDuck}>Delete This Duck</button>
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  id: state.user.id
-
+ state: state
 })
 const mapDispatch = dispatch => ({
-  addDuck: (duckColor, duckName, userId) =>
-    dispatch(createDuck(duckColor, duckName, userId))
+  editDuck: (duckName, duckColor, duckId) =>
+    dispatch(editDuck(duckName, duckColor, duckId)),
+  removeDuck: (duckId) =>
+    dispatch(deleteDuck(duckId))
 })
 
-export default connect(mapState, mapDispatch)(DuckLoader)
+export default connect(mapState, mapDispatch)(SavedDuck)

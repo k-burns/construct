@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import DuckLoader from './components/duckLoader'
+import SavedDuck from './components/savedDuck'
 
 
 class Routes extends Component {
@@ -14,13 +15,12 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    console.log(this.props)
-    console.log(this.state)
     return (
       <Switch>
         <Route path="/construct" component={DuckLoader} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/savedDuck" component={SavedDuck} />
         {isLoggedIn && (
           <Switch>
             <Route path="/home" component={UserHome} />

@@ -13,10 +13,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req)
-    // let duckColor = req.body.duckColor
-    // let duckName = req.body.duckName
-    // let userId = req.body.userId
     await Duck.create(req.body)
   } catch (err) {
     next(err)
@@ -37,7 +33,21 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-router.delete('/:duckId', async (req, res, next) => {
+router.get('/oneDuck/:duckId', async (req, res, next) => {
+  try {
+    let duckId = req.params.duckId
+    const duck = await Duck.findAll({
+      where: {
+        id: duckId
+      }
+    })
+    res.json(duck)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/oneDuck/:duckId', async (req, res, next) => {
   try {
     const {duckId} = req.params
     const duck = await Duck.findByPk(duckId)
@@ -48,7 +58,8 @@ router.delete('/:duckId', async (req, res, next) => {
   }
 })
 
-router.patch('/:duckId', async (req, res, next) => {
+router.patch('/oneDuck/:duckId', async (req, res, next) => {
+  console.log('patching')
   try {
     const {duckId} = req.params
     let duck = await Duck.findByPk(duckId)
