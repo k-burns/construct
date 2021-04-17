@@ -9,7 +9,8 @@ class DuckLoader extends React.Component {
   constructor(props) {
     super(props)
     this.state = {colorPicker: '#fafafa',
-    name: ''
+    name: '',
+    isSubmitted: false
   }
     this.scene = new THREE.Scene()
     this.objLoader = new OBJLoader()
@@ -56,6 +57,7 @@ class DuckLoader extends React.Component {
         this.state.name,
         this.props.id
       )
+      this.setState({isSubmitted: true})
     }
   }
   render() {
@@ -74,6 +76,7 @@ class DuckLoader extends React.Component {
           <input type="text" name="name" onChange={this.handleChange} />
           <button>Save</button>
         </form>
+        <div>{this.state.isSubmitted && <div>Friend Sent To Nest!</div>}</div>
       </div>
     )
   }

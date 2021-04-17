@@ -9,7 +9,9 @@ class SavedDuck extends React.Component {
   constructor(props) {
     super(props)
     this.state = {colorPicker: this.props.location.state.color,
-    name: this.props.location.state.name
+    name: this.props.location.state.name,
+    saved: false,
+    deleted: false
   }
     this.scene = new THREE.Scene()
     this.objLoader = new OBJLoader()
@@ -58,6 +60,7 @@ class SavedDuck extends React.Component {
         this.state.name,
         this.props.location.state.id
       )
+      this.setState({saved: true})
     }
   }
 
@@ -65,6 +68,7 @@ class SavedDuck extends React.Component {
     evt.preventDefault()
     console.log('deleting')
     this.props.removeDuck(this.props.location.state.id)
+    this.setState({deleted: true})
   }
 
   render() {
@@ -83,6 +87,8 @@ class SavedDuck extends React.Component {
           <button>Save</button>
         </form>
         <button onClick = {this.deleteDuck}>Delete This Duck</button>
+        <div>{this.state.deleted && <div>Duck Removed From Nest!</div>}</div>
+        <div>{this.state.saved && <div>Duck Updated!</div>}</div>
       </div>
     )
   }

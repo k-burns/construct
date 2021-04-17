@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import DuckLoader from './components/duckLoader'
 import SavedDuck from './components/savedDuck'
+import Info from './components/info'
 
 
 class Routes extends Component {
@@ -18,12 +19,13 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/construct" component={DuckLoader} />
+        <Route path="/info" component={Info} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/savedDuck" component={SavedDuck} />
         {isLoggedIn && (
           <Switch>
             <Route path="/home" component={UserHome} />
+            <Route path="/savedDuck" component={SavedDuck} />
           </Switch>
         )}
         <Route component={Login} />
