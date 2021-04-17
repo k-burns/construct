@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const GET_DUCKS = 'GET_USER'
-const SET_DUCKS = 'SET_DUCKS'
+const GET_DUCKS = 'GET_DUCKS'
 const REMOVE_DUCK = 'REMOVE_DUCK'
 const EDIT_DUCK = 'EDIT_DUCK'
 const ADD_DUCK = 'ADD_DUCK'
@@ -9,8 +8,8 @@ const ADD_DUCK = 'ADD_DUCK'
 
 const defaultDucks = []
 
-export const setDucks = ducks => ({
-  type: SET_DUCKS,
+export const getDucks = ducks => ({
+  type: GET_DUCKS,
   ducks
 })
 
@@ -34,7 +33,7 @@ export const changeDuck = (duckName, duckColor, duckId) => ({
 export const fetchDucks = userId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/ducks/${userId}`)
-    dispatch(setDucks(data))
+    dispatch(getDucks(data))
   } catch (err) {
     console.error('Error fetching ducks: ', err)
   }
