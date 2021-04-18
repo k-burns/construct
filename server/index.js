@@ -33,6 +33,15 @@ const createApp = () => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'bread is bad for ducks',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+
 app.use(passport.initialize())
 app.use(passport.session())
 

@@ -73,8 +73,11 @@ class SavedDuck extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = 'construct-container'>
+        <div className = 'canvas-container'>
         <canvas id = 'c'></canvas>
+        </div>
+        <div className = 'picker-container'>
         <div ref={ref => (this.mount = ref)} />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="colorPicker">Pick your color!</label>
@@ -86,9 +89,10 @@ class SavedDuck extends React.Component {
           <input type="text" name="name" onChange={this.handleChange} />
           <button>Save</button>
         </form>
-        <button onClick = {this.deleteDuck}>Delete This Duck</button>
+        <button className = 'delete-button' onClick = {this.deleteDuck}>Delete This Duck</button>
         <div>{this.state.deleted && <div>Duck Removed From Nest!</div>}</div>
         <div>{this.state.saved && <div>Duck Updated!</div>}</div>
+        </div>
       </div>
     )
   }

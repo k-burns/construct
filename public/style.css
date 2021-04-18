@@ -1,9 +1,11 @@
 body {
   font-family: sans-serif;
+  background-color: #ace5f3;
 }
 
 a {
   text-decoration: none;
+  margin-left: 2%;
 }
 
 label {
@@ -21,6 +23,103 @@ form div {
 }
 
 #c {
-  height: 70%;
-  width: 70%;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5%;
+  justify-content: space-between;
+}
+
+.nav-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: right;
+}
+.nav-left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.title {
+  display: grid;
+  justify-items: center;
+}
+
+.info-container {
+  display: grid;
+}
+
+.info-title {
+  justify-self: center;
+}
+
+.info-p {
+  margin-left: 2%;
+  margin-right: 12%;
+  margin-top: 0%;
+  margin-bottom: 8%;
+}
+
+.info-subtitle {
+  margin-bottom: 2%;
+}
+
+.ducksite-container {
+  display: grid;
+  width: 50%;
+  justify-content: center;
+}
+
+h6 {
+  justify-self: center;
+}
+
+.signin-form {
+  display: grid;
+  justify-content: center;
+  grid-gap: 5%;
+}
+
+.signin-header {
+  justify-self: center;
+
+}
+
+.construct-container {
+  display: grid;
+  /* grid-auto-flow: column; */
+  grid-template-columns: 3fr 1fr;
+}
+
+.picker-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  margin: 3%
+}
+
+.home-container {
+  display: grid;
+}
+
+.home-title {
+  justify-self: center;
+}
+
+.nest-container {
+  display: grid;
+  margin-left: 5%;
+}
+
+.container {
+  display: grid;
+  height: 100%;
+}
+
+.delete-button {
+  width: max-content;
+  height: max-content
 }

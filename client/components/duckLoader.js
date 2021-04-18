@@ -63,8 +63,11 @@ class DuckLoader extends React.Component {
   render() {
     console.log(this.scene)
     return (
-      <div>
+      <div className = 'construct-container'>
+        <div className = 'canvas-container'>
         <canvas id = 'c'></canvas>
+        </div>
+        <div className = 'picker-container'>
         <div ref={ref => (this.mount = ref)} />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="colorPicker">Pick your color!</label>
@@ -77,6 +80,7 @@ class DuckLoader extends React.Component {
           <button>Save</button>
         </form>
         <div>{this.state.isSubmitted && <div>Friend Sent To Nest!</div>}</div>
+        </div>
       </div>
     )
   }

@@ -20,10 +20,10 @@ class UserHome extends React.Component {
   render() {
     const ducks = this.props.ducks || []
     return (
-      <div>
-        <h3>Welcome to your nest, {this.email}</h3>
+      <div className = 'home-container'>
+        <h3 className = 'home-title'>Welcome to your nest, {this.email}</h3>
         <h5>{ducks.length ? 'Pick a duck to play with' : 'Uh oh! Your nest is empty! Why not go make a freind?'}</h5>
-        <div> {ducks.map(duck => <div id = {duck.name}><Link to={{pathname:"/savedDuck", state:{id: duck.id, color: duck.color, name: duck.name}}}>{duck.name}</Link></div>)}</div>
+        <div className = 'nest-container'> {ducks.map(duck => <div className = 'nest-items' key = {duck.name}><Link to={{pathname:"/savedDuck", state:{id: duck.id, color: duck.color, name: duck.name}}}>{duck.name}</Link></div>)}</div>
       </div>
     )
   }
