@@ -1,12 +1,18 @@
 import axios from 'axios'
 
+//action types
+
 const GET_DUCKS = 'GET_DUCKS'
 const GET_SELECTED_DUCK = 'GET_SELECTED_DUCK'
 const ADD_DUCK = 'ADD_DUCK'
 const EDIT_DUCK = 'EDIT_DUCK'
 const REMOVE_DUCK = 'REMOVE_DUCK'
 
+//default state
+
 const defaultDucks = []
+
+//action creators
 
 export const getDucks = (ducks) => ({
   type: GET_DUCKS,
@@ -36,6 +42,9 @@ export const removeDuck = (duckId) => ({
   type: REMOVE_DUCK,
   duckId
 })
+
+
+//thunks
 
 export const fetchDucks = (userId) => async (dispatch) => {
   try {
@@ -89,6 +98,8 @@ export const deleteDuck = (duckId) => async (dispatch) => {
     console.error('Error deleting duck from nest', err)
   }
 }
+
+//reducer
 
 export default function (state = defaultDucks, action) {
   switch (action.type) {

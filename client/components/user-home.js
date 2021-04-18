@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchDucks } from '../store/ducks'
+import { fetchDucks } from '../store'
 import { Link } from 'react-router-dom'
 
 class UserHome extends React.Component {
   constructor(props) {
     super(props)
-    this.email = props.email
+    this.userName = props.userName
   }
 
   componentDidMount() {
@@ -17,16 +17,17 @@ class UserHome extends React.Component {
     const ducks = this.props.ducks || []
     return (
       <div className='home-container'>
-        <h3 className='home-title'>Welcome to your nest, {this.email}</h3>
+        <h3 className='home-title'>Welcome to your nest, {this.userName}</h3>
         <h5>
+          {/* load ducks or empty message */}
           {ducks.length
             ? 'Pick a duck to play with'
-            : 'Uh oh! Your nest is empty! Why not go make a freind?'}
+            : 'Uh oh! Your nest is empty! Why not go make a friend?'}
         </h5>
         <div className='nest-container'>
-          {' '}
           {ducks.map((duck) => (
             <div className='nest-items' key={duck.id}>
+              {/* link on duck name to view/edit the duck */}
               <Link
                 to={{
                   pathname: '/savedDuck',
@@ -44,7 +45,7 @@ class UserHome extends React.Component {
 }
 
 const mapState = (state) => ({
-  email: state.user.email,
+  userName: state.user.userName,
   id: state.user.id,
   ducks: state.ducks
 })

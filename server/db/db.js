@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const pkg = require('../../package.json')
 
 const databaseName =
-  pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
+  pkg.name
 
 let config
 
@@ -30,6 +30,3 @@ const db = new Sequelize(
 
 module.exports = db
 
-if (process.env.NODE_ENV === 'test') {
-  after('close database connection', () => db.close())
-}

@@ -2,6 +2,8 @@ const router = require('express').Router()
 const { Duck } = require('../db/models')
 module.exports = router
 
+// '/api/ducks' routes
+
 router.get('/', async (req, res, next) => {
   try {
     const ducks = await Duck.findAll({})
@@ -19,6 +21,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+
 router.get('/:userId', async (req, res, next) => {
   try {
     let userId = req.params.userId
@@ -32,6 +35,7 @@ router.get('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
 
 router.get('/oneDuck/:duckId', async (req, res, next) => {
   try {

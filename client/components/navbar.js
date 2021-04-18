@@ -8,19 +8,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <h1 className='title'>Construct-A-Duck</h1>
     <nav>
       {isLoggedIn ? (
+        // navbar if logged in
         <div className='nav-container'>
           <div className='nav-left'>
             <Link to='/construct'>Constructor</Link>
             <Link to='/info'>Information</Link>
           </div>
           <div className='nav-right'>
-            <Link to='/home'>Home</Link>
+            <Link to='/nest'>Nest</Link>
             <a href='#' onClick={handleClick}>
               Logout
             </a>
           </div>
         </div>
       ) : (
+        // navbar if logged out
         <div className='nav-container'>
           <div className='nav-left'>
             <Link to='/construct'>Construct-A-Duck</Link>
@@ -39,6 +41,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
 const mapState = (state) => {
   return {
+    //change state.user.id to boolean
     isLoggedIn: !!state.user.id
   }
 }

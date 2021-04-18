@@ -1,13 +1,28 @@
 import axios from 'axios'
 import history from '../history'
 
+//action types
+
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
+//default state
+
 const defaultUser = {}
 
-const getUser = (user) => ({ type: GET_USER, user })
-const removeUser = () => ({ type: REMOVE_USER })
+
+//action creators
+
+const getUser = (user) => ({
+  type: GET_USER,
+  user
+ })
+
+const removeUser = () => ({
+  type: REMOVE_USER
+})
+
+//thunks
 
 export const me = () => async (dispatch) => {
   try {
@@ -18,17 +33,17 @@ export const me = () => async (dispatch) => {
   }
 }
 
-export const auth = (email, password, method) => async (dispatch) => {
+export const auth = (userName, password, method) => async (dispatch) => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, { email, password })
+    res = await axios.post(`/auth/${method}`, { userName, password })
   } catch (authError) {
     return dispatch(getUser({ error: authError }))
   }
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push('/nest')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

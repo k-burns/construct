@@ -1,7 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { editDuck, deleteDuck } from '../store/ducks'
+import { editDuck, deleteDuck } from '../store'
 import { connect } from 'react-redux'
 import loader from './3dLoaderFunc'
 
@@ -31,6 +31,7 @@ class SavedDuck extends React.Component {
   }
 
   handleSubmit(evt) {
+    //reload duck based off of color change
     evt.preventDefault()
     const color = this.state.colorPicker
     let scene = this.scene
@@ -52,7 +53,7 @@ class SavedDuck extends React.Component {
   updateDuck(evt) {
     evt.preventDefault()
 
-    if (this.state.name === undefined) {
+    if (this.state.name === '') {
       window.alert('Please name your friend')
     } else {
       this.props.editDuck(
@@ -89,13 +90,15 @@ class SavedDuck extends React.Component {
           </form>
           <form onSubmit={this.updateDuck}>
             <label htmlFor='name'>Update my Duck</label>
-            <input type='text' name='name' onChange={this.handleChange} />
+            <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
             <button>Save</button>
           </form>
           <button className='delete-button' onClick={this.deleteDuck}>
             Delete This Duck
           </button>
+          {/* loads after duck is deleted */}
           <div>{this.state.deleted && <div>Duck Removed From Nest!</div>}</div>
+          {/* loads after duck is updated */}
           <div>{this.state.saved && <div>Duck Updated!</div>}</div>
         </div>
       </div>

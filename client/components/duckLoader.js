@@ -1,7 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { createDuck } from '../store/ducks'
+import { createDuck } from '../store'
 import { connect } from 'react-redux'
 import loader from './3dLoaderFunc'
 
@@ -25,6 +25,7 @@ class DuckLoader extends React.Component {
   }
 
   handleSubmit(evt) {
+    //reload scene using color choosen
     evt.preventDefault()
     const color = this.state.colorPicker
     let scene = this.scene
@@ -46,7 +47,7 @@ class DuckLoader extends React.Component {
     evt.preventDefault()
     if (this.props.id === undefined) {
       window.alert('Please login to save duck')
-    } else if (this.state.name === undefined) {
+    } else if (this.state.name === '') {
       window.alert('Please name your friend')
     } else {
       this.props.addDuck(
@@ -79,6 +80,7 @@ class DuckLoader extends React.Component {
             <input type='text' name='name' onChange={this.handleChange} />
             <button>Save</button>
           </form>
+          {/* loads after duck is saved */}
           <div>{this.state.isSubmitted && <div>Friend Sent To Nest!</div>}</div>
         </div>
       </div>

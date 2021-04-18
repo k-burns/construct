@@ -12,9 +12,7 @@ const app = express()
 const socketio = require('socket.io')
 module.exports = app
 
-if (process.env.NODE_ENV === 'test') {
-  after('close the session store', () => sessionStore.stopExpiringSessions())
-}
+//passport connect
 
 passport.serializeUser((user, done) => done(null, user.id))
 
@@ -27,12 +25,15 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
+
 const createApp = () => {
+  //middleware
   app.use(morgan('dev'))
 
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
 
+  //creating session to stay logged in
   app.use(
     session({
       secret: process.env.SESSION_SECRET || 'bread is bad for ducks',
@@ -45,10 +46,15 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  //connect routes
+
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
+
   app.use(express.static(path.join(__dirname, '..', 'public')))
+
+  //incorrect route
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -60,9 +66,13 @@ const createApp = () => {
     }
   })
 
+  //send html file
+
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'))
   })
+
+  //server error
 
   app.use((err, req, res, next) => {
     console.error(err)
@@ -70,6 +80,7 @@ const createApp = () => {
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
+
 
 const startListening = () => {
   const server = app.listen(PORT, () =>
