@@ -22,9 +22,13 @@ form div {
   display: inline-block;
 }
 
-#c {
-  height: 100%;
-  width: 100%;
+h6 {
+  justify-self: center;
+}
+
+.title {
+  display: grid;
+  justify-items: center;
 }
 
 .nav-container {
@@ -42,11 +46,6 @@ form div {
 .nav-left {
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.title {
-  display: grid;
-  justify-items: center;
 }
 
 .info-container {
@@ -74,10 +73,6 @@ form div {
   justify-content: center;
 }
 
-h6 {
-  justify-self: center;
-}
-
 .signin-form {
   display: grid;
   justify-content: center;
@@ -86,19 +81,18 @@ h6 {
 
 .signin-header {
   justify-self: center;
-
 }
 
 .construct-container {
   display: grid;
-  /* grid-auto-flow: column; */
+  /* grid-auto-flow: column */
   grid-template-columns: 3fr 1fr;
 }
 
 .picker-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  margin: 3%
+  margin: 3%;
 }
 
 .home-container {
@@ -121,5 +115,10 @@ h6 {
 
 .delete-button {
   width: max-content;
-  height: max-content
+  height: max-content;
+}
+
+#c {
+  height: 100%;
+  width: 100%;
 }

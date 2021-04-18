@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Duck} = require('../db/models')
+const { Duck } = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -47,21 +47,9 @@ router.get('/oneDuck/:duckId', async (req, res, next) => {
   }
 })
 
-router.delete('/oneDuck/:duckId', async (req, res, next) => {
-  try {
-    const {duckId} = req.params
-    const duck = await Duck.findByPk(duckId)
-    await duck.destroy()
-    res.sendStatus(204)
-  } catch (err) {
-    next(err)
-  }
-})
-
 router.patch('/oneDuck/:duckId', async (req, res, next) => {
-  console.log('patching')
   try {
-    const {duckId} = req.params
+    const { duckId } = req.params
     let duck = await Duck.findByPk(duckId)
     await duck.update({
       name: req.body.duckName,
@@ -72,3 +60,16 @@ router.patch('/oneDuck/:duckId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/oneDuck/:duckId', async (req, res, next) => {
+  try {
+    const { duckId } = req.params
+    const duck = await Duck.findByPk(duckId)
+    await duck.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
