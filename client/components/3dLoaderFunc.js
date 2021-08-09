@@ -4,6 +4,7 @@ import OrbitControls from 'three-orbitcontrols'
 //function to make 3-D environment
 
 const loader = (duckColor, scene, loader) => {
+  const manager = new THREE.LoadingManager();
   const canvas = document.querySelector('#c')
   const renderer = new THREE.WebGLRenderer({ canvas })
   //camera position
