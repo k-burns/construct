@@ -1,7 +1,9 @@
 body {
   font-family: sans-serif;
-  background-color: #ace5f3;
+  color: #12263A;
+  background-color: #40C9A2;
 }
+
 
 a {
   text-decoration: none;
@@ -30,6 +32,11 @@ h6 {
   display: grid;
   justify-items: center;
 }
+
+.navbar{
+  background-color: #FCEC52;
+}
+
 
 .nav-container {
   display: grid;
@@ -60,7 +67,7 @@ h6 {
   margin-left: 2%;
   margin-right: 12%;
   margin-top: 0%;
-  margin-bottom: 8%;
+  margin-bottom: 2%;
 }
 
 .info-subtitle {
@@ -69,8 +76,7 @@ h6 {
 
 .ducksite-container {
   display: grid;
-  width: 50%;
-  justify-content: center;
+  width: 25%;
 }
 
 .signin-form {
@@ -87,6 +93,7 @@ h6 {
   display: grid;
   /* grid-auto-flow: column */
   grid-template-columns: 3fr 1fr;
+  background-color: #FFA69E;
 }
 
 .picker-container {
@@ -97,6 +104,7 @@ h6 {
 
 .home-container {
   display: grid;
+  background-color: #FFA69E;
 }
 
 .home-title {
@@ -116,6 +124,11 @@ h6 {
 .delete-button {
   width: max-content;
   height: max-content;
+}
+.info-contents{
+  background-color: #FFA69E;
+  color: #2D3142;
+  padding: 3em;
 }
 
 #c {

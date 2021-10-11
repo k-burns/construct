@@ -4,6 +4,7 @@ const Info = () => {
   return (
     <div className='info-container'>
       <h1 className='info-title'>Welcome to Construct-A-Duck!</h1>
+      <div className = 'info-contents'>
       <h3 className='info-about-title'>Why A 3-D Duck?</h3>
       <p className='info-p'>
         Rubber ducks are known for their great listening skills. They are
@@ -29,6 +30,7 @@ const Info = () => {
         <a href='https://ducksinthewindow.com/' target='_blank'>
           Choose from a huge selection of friends!
         </a>
+      </div>
       </div>
     </div>
   )
