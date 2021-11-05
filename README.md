@@ -2,9 +2,9 @@
 
 Coding (and life) can be challenging. Sometimes it's nice to share your problems with a little buddy? Having a physical rubber duck is nice, but sometimes they aren't always available.
 
-Fret not! Cosntruct-A-Duck lets you color, name, and save a little 3-D pal to tell your worries to.
+Fret not! Construct-A-Duck lets you color, name, and save a little 3-D pal to tell your worries to.
 
-Login and save your buddies to your 'nest' and come back visit them later.
+Login and save your buddies to your 'nest' and come back to visit them later.
 
 ## Ready to get started?
 
